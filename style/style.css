@@ -1,4 +1,7 @@
-@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
+/* FonAwesome */
+@import url("https://use.fontawesome.com/releases/v5.15.4/css/all.css");
 
 :root {
   --primaryColor: #f09d51;
@@ -16,7 +19,8 @@
 body {
   color: var(--mainBlack);
   background: var(--mainWhite);
-  font-family: "Lato", sans-serif;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
 }
 /* --------------- Navbar ---------------- */
 .navbar {
@@ -40,10 +44,17 @@ body {
 }
 .nav-icon {
   font-size: 1.5rem;
+  cursor: pointer;
+}
+.navbar .heading {
+  font-size: 25px;
+  letter-spacing: 4px;
+}
+.navbar .heading span {
+  color: var(--primaryColor);
 }
 .cart-btn {
   position: relative;
-  cursor: pointer;
 }
 .cart-items {
   position: absolute;
@@ -55,10 +66,11 @@ body {
   color: var(--mainWhite);
 }
 /* --------------- End of Navbar ---------------- */
+
 /* --------------- Hero ---------------- */
 .hero {
   min-height: calc(100vh - 60px);
-  background: url("./images/hero-bcg.jpeg") center/cover no-repeat;
+  background: url("../images/hero-bcg.webp") center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,8 +103,8 @@ body {
   color: var(--primaryColor);
 }
 /* --------------- End of Hero ---------------- */
-/* --------------- Products ---------------- */
 
+/* --------------- Products ---------------- */
 .products {
   padding: 4rem 0;
 }
@@ -163,8 +175,8 @@ body {
   color: var(--primaryColor);
   text-align: center;
 }
-
 /* ---------------End of Products ---------------- */
+
 /* --------------- Cart ---------------- */
 .cart-overlay {
   position: fixed;
@@ -183,7 +195,7 @@ body {
   right: 0;
   width: 100%;
   height: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
   z-index: 3;
   background: rgb(231, 226, 221);
   padding: 1.5rem;
