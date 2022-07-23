@@ -35,13 +35,14 @@ class Products {
       let data = await result.json();
       let products = data.items;
 
-      // Destructuring JSON Object To Make It Easy
+      // Destructuring JSON Object To Make It Easy To Use
       products = products.map((item) => {
         let {title, price} = item.fields;
         let {id} = item.sys;
-        let image = item.field.image.fields.file.url;
+        let image = item.fields.image.fields.file.url;
+        return {title, price, id, image};
       });
-      console.log(products);
+      // console.log(products);
       return products;
     } catch (error) {
       console.log(error);
@@ -52,12 +53,34 @@ class Products {
 // Display Products
 class UI {
   displayProducts(products) {
+    // Creating the product item
+    let results = "";
+    products.forEach(item => {
+      results += `
+      <article class="product">
+        <div class="img-container">
+          <img src=${item.image} alt="product" class="product-img">
+          <button class="bag-btn" data-id=${item.id}>
+            <i class="fas fa-shopping-cart"></i>
+            add to cart
+          </button>
+        </div>
+        <h3>${item.title}</h3>
+        <h4>$${item.price}</h4>
+      </article>`;
+    });
 
+    // Append Product items in the products container
+    productsDOM.innerHTML = results;
   }
 }
 
 // Local Storage
-class Storage {}
+class Storage {
+  static saveProducts(products) {
+    localStorage.setItem("products", JSON.stringify(products));
+  }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   const ui = new UI();
@@ -65,7 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Get all products
   products.getProducts().then((products) => {
-    ui.displayProducts(products)
+    ui.displayProducts(products);
+    Storage.saveProducts(products);
   }
   );
 });
